@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "245174696970",
+    "project_id": "brew-77a76",
+    "storage_bucket": "brew-77a76.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245174696970:android:c8e2003c8b4ac5a50473f3",
+        "android_client_info": {
+          "package_name": "com.azure.brew"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRrWmbU7CN3BrjxMYuzKNCR4r6INLzBus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
