@@ -1,10 +1,13 @@
+import 'dart:convert';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:weather_app/pages/additional_forecast_item.dart';
 import 'package:weather_app/pages/hourly_forecast_item.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:ui';
+
+import 'package:weather_app_state/secrets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late Future<Map<String,dynamic>>weather;
+  late Future<Map<String, dynamic>> weather;
   @override
   void initState() {
     super.initState();
@@ -26,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       String cityName = 'mumbai';
       final res = await http.get(
         Uri.parse(
-            'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&appid='),
+            'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&appid=$API_KEY'),
       );
       final Map<String, dynamic> data;
       if (res.statusCode == 200) {
@@ -57,9 +60,9 @@ class _HomePageState extends State<HomePage> {
                 Icons.refresh,
               ),
               onPressed: () {
-               setState(() {
-                 weather = getCurrentWeather();
-               });
+                setState(() {
+                  weather = getCurrentWeather();
+                });
               },
             ),
           ],

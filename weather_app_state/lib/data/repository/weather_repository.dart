@@ -6,7 +6,7 @@ import 'package:weather_app_state/models/weather_model.dart';
 class WeatherRepository {
   final WeatherDataProvider weatherDataProvider;
   WeatherRepository(this.weatherDataProvider);
-  Future<WeatherModel> getCurrentWeather() async {
+  Future<List<WeatherModel>> getCurrentWeather() async {
     try {
       String cityName = 'Pune';
       final data = await weatherDataProvider.getCurrentWeather(cityName);
@@ -16,7 +16,7 @@ class WeatherRepository {
         throw 'An unexpected error occurred';
       }
 
-      return WeatherModel.fromMap(weatherData);
+      return WeatherModel.getWeatherForecastData(weatherData);
     } catch (e) {
       throw e.toString();
     }

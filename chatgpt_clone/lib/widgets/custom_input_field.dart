@@ -25,7 +25,6 @@ class _CustomInputFieldState extends State<CustomInputField> {
         response['candidates'][0]['content']['parts'][0]['text'];
     Map<String, String> chat = {"role": "model", "content": responseMessage};
     Provider.of<ChatProvider>(context, listen: false).addMessage(chat);
-    textController.text = '';
   }
 
   @override
@@ -46,6 +45,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
       suffixIcon: CustomSuffixIconButton(
         handleSubmit: () {
           handleSubmit(textController.value.text);
+          textController.clear();
         },
       ),
       enabledBorder: OutlineInputBorder(

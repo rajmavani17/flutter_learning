@@ -6,12 +6,14 @@ class WeatherModel {
   final int currentPressure;
   final double currentWindSpeed;
   final int currentHumidity;
+  final String date;
   WeatherModel({
     required this.currentTemp,
     required this.currentSky,
     required this.currentPressure,
     required this.currentWindSpeed,
     required this.currentHumidity,
+    required this.date,
   });
 
   WeatherModel copyWith({
@@ -20,6 +22,7 @@ class WeatherModel {
     int? currentPressure,
     double? currentWindSpeed,
     int? currentHumidity,
+    String? date,
   }) {
     return WeatherModel(
       currentTemp: currentTemp ?? this.currentTemp,
@@ -27,6 +30,7 @@ class WeatherModel {
       currentPressure: currentPressure ?? this.currentPressure,
       currentWindSpeed: currentWindSpeed ?? this.currentWindSpeed,
       currentHumidity: currentHumidity ?? this.currentHumidity,
+      date: date ?? this.date,
     );
   }
 
@@ -37,6 +41,7 @@ class WeatherModel {
       'currentPressure': currentPressure,
       'currentWindSpeed': currentWindSpeed,
       'currentHumidity': currentHumidity,
+      'date': date,
     };
   }
 
@@ -48,7 +53,26 @@ class WeatherModel {
       currentPressure: currentWeatherData['main']['pressure'] as int,
       currentWindSpeed: currentWeatherData['wind']['speed'] as double,
       currentHumidity: currentWeatherData['main']['humidity'] as int,
+      date: currentWeatherData['dt_txt'] as String,
     );
+  }
+
+  static List<WeatherModel> getWeatherForecastData(Map<String, dynamic> map) {
+    int len = map['list'].length;
+    List<WeatherModel> result = [];
+    for (int i = 0; i < len; i++) {
+      final currentWeatherData = map['list'][i];
+      final weather = WeatherModel(
+        currentTemp: currentWeatherData['main']['temp'] as double,
+        currentSky: currentWeatherData['weather'][0]['main'] as String,
+        currentPressure: currentWeatherData['main']['pressure'] as int,
+        currentWindSpeed: currentWeatherData['wind']['speed'] as double,
+        currentHumidity: currentWeatherData['main']['humidity'] as int,
+        date: currentWeatherData['dt_txt'] as String,
+      );
+      result.add(weather);
+    }
+    return result;
   }
 
   String toJson() => json.encode(toMap());
@@ -58,7 +82,7 @@ class WeatherModel {
 
   @override
   String toString() {
-    return 'WeatherModel(currentTemp: $currentTemp, currentSky: $currentSky, currentPressure: $currentPressure, currentWindSpeed: $currentWindSpeed, currentHumidity: $currentHumidity)';
+    return 'WeatherModel(currentTemp: $currentTemp, currentSky: $currentSky, currentPressure: $currentPressure, currentWindSpeed: $currentWindSpeed, currentHumidity: $currentHumidity, date: $date)';
   }
 
   @override
@@ -69,7 +93,8 @@ class WeatherModel {
         other.currentSky == currentSky &&
         other.currentPressure == currentPressure &&
         other.currentWindSpeed == currentWindSpeed &&
-        other.currentHumidity == currentHumidity;
+        other.currentHumidity == currentHumidity &&
+        other.date == date;
   }
 
   @override
@@ -78,6 +103,7 @@ class WeatherModel {
         currentSky.hashCode ^
         currentPressure.hashCode ^
         currentWindSpeed.hashCode ^
-        currentHumidity.hashCode;
+        currentHumidity.hashCode ^
+        date.hashCode;
   }
 }

@@ -4,9 +4,7 @@
 // import 'prototype_pattern.dart';
 // import 'singleton_pattern.dart';
 
-
 // import 'dart:async';
-
 
 // void main() {
 //   final eventBus1 = EventBus();
@@ -63,46 +61,44 @@
 //   // print(p1.age);
 //   // print(p2.age);
 
-  
 //   // final PostApi api = PostApi();
-  
+
 //   // print(api.getPosts());
 // }
 
+import 'dart:math';
 
+double getAreaOfTriangleFrom3Sides(double a, double b, double c) {
+  double s = (a + b + c) / 2;
+
+  double area = sqrt(s * (s - a) * (s - b) * (s - c));
+
+  return area;
+}
+
+void add(a, b) {
+  print(a + b);
+}
+
+Random rand = Random();
+int getRandomInt() {
+  return rand.nextInt(6) + 1;
+}
 
 void main() {
-  Bulb bulb = LedBulb();
-  bulb.turnOFF();
-  bulb.turnON();
-}
-
-abstract interface class Bulb {
-  void turnON();
-  void turnOFF();
-}
-
-
-class IncandescentBulb implements Bulb {
-  @override
-  void turnOFF() {
-    print("Incandesent Bulb Turn Off");
+  Map<int, int> map = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+    6: 0,
+  };
+  for (int i = 0; i < 1000000000; i++) {
+    int temp = getRandomInt();
+    map[temp] = map[temp]! + 1;
   }
-
-  @override
-  void turnON() {
-    print("Incandescent bulb turn on");
-  }
-}
-
-class LedBulb implements Bulb {
-  @override
-  void turnOFF() {
-    print("Led bulb turn off");
-  }
-
-  @override
-  void turnON() {
-    print("Led bulb turn on");
+  for (int i = 1; i <= 6; i++) {
+    print(map[i]);
   }
 }
