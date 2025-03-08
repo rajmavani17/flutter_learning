@@ -79,9 +79,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
+    - assets/lottie/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -97,10 +98,16 @@ flutter:
   fonts:
     - family: Aeonik
       fonts:
-        - asset: assets/fonts/AeonikTRIAL-Light.ttf
-        - asset: assets/fonts/AeonikTRIAL-LightItalic.ttf
-          style: light
-        - asset: assets/fonts/AeonikTRIAL-Regular.ttf
+        - asset: assets/fonts/AeonikTRIAL-Light.otf
+        - asset: assets/fonts/AeonikTRIAL-LightItalic.otf
+        - asset: assets/fonts/AeonikTRIAL-Regular.otf
+          weight: 400
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-Italic.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
           weight: 400
     # - family: Trajan Pro
     #   fonts:
